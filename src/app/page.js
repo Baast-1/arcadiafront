@@ -21,7 +21,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://arcadiaback.railway.internal/users', formData);
+      const response = await axios.post('https://arcadiaback.railway.internal/users', formData);
       if (response.status === 201) {
         setMessage('Utilisateur créé');
       }
