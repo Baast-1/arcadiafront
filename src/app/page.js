@@ -1,13 +1,11 @@
 'use client';
 import { useState } from 'react';
-import axios from 'axios';
+import { register } from '@/utils/auth';
 
 export default function Register() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    firstname: '',
-    lastname: ''
   });
   const [message, setMessage] = useState('');
 
@@ -21,7 +19,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://arcadiaback.railway.internal/users', formData);
+      const response = await register(formData.email, formData.password);
       if (response.status === 201) {
         setMessage('Utilisateur créé');
       }
@@ -57,32 +55,6 @@ export default function Register() {
               id="password"
               placeholder="Password"
               value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="firstname" className="block text-sm font-medium text-gray-700">First Name</label>
-            <input
-              type="text"
-              name="firstname"
-              id="firstname"
-              placeholder="First Name"
-              value={formData.firstname}
-              onChange={handleChange}
-              required
-              className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
-          <div>
-            <label htmlFor="lastname" className="block text-sm font-medium text-gray-700">Last Name</label>
-            <input
-              type="text"
-              name="lastname"
-              id="lastname"
-              placeholder="Last Name"
-              value={formData.lastname}
               onChange={handleChange}
               required
               className="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
