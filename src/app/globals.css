@@ -9,7 +9,8 @@
   --custom-2: #39604C;
   --custom-3: #E7E1CF;
   --custom-4: #ffff;
-  --custom-5: #D90000;
+  --custom-5: #000;
+  --custom-6: #D90000;
   --custom-gray-1: #EBEBEB;
   background-color: var(--custom-4);
 }
@@ -147,4 +148,47 @@ input[type="radio"] + label:hover {
 
 .toggle-input:checked + .toggle-label::before {
   transform: translateX(26px);
+}
+
+
+/* Inputs */
+.wrapper {
+  position: relative;
+  width: min(325px, 80vw);
+  margin-bottom: 1rem;
+  font-family: 'Raleway', sans-serif;
+  color: var(--white);
+}
+
+input {
+  width: 100%;
+  border: 1.5px solid var(--custom-4);
+  border-radius: 0.25rem;
+  outline: none;
+  background-color: transparent;
+  color: var(--custom-2);
+  padding: 1rem;
+  transition: border-color 0.5s;
+}
+
+input:focus {
+  border-color: var(--custom-5);
+}
+
+input:focus + .input-placeholder,
+input:not(:placeholder-shown) + .input-placeholder {
+  transform: translateY(-1.8rem) scale(0.75);
+  padding: 0 0.25rem;
+  color: var(--custom-2);
+}
+
+.input-placeholder {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: var(--custom-2);
+  transition: transform 0.5s, color 0.5s;
+  background-color: var(--custom-4);
+  padding: 0 0.25rem;
+  pointer-events: none;
 }
