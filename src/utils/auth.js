@@ -15,7 +15,7 @@ export const login = async (email, password) => {
 
 export const register = async (email, password) => {
     try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, { email, password });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}auth/register`, { email, password });
         const { token } = response.data;
         console.log('Réponse de l\'API:', response.data);
         localStorage.setItem('token', token);
