@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 :root {
   --custom-1: #0D2C3B;
   --custom-2: #39604C;
@@ -9,4 +11,140 @@
   --custom-4: #ffff;
   --custom-5: #D90000;
   --custom-gray-1: #EBEBEB;
+  background-color: var(--custom-4);
+}
+
+@layer utilities {
+  .bg-gradient {
+    background: linear-gradient(to bottom, #0D2C3B, #39604C, #E7E1CF);
+  }
+}
+
+/* Styles pour Swiper */
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  width: auto;
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+.swiper-slide {
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  height: 100%;
+  max-height: 100%;
+  transition: transform 0.3s ease-in-out; 
+}
+
+.swiper-slide-next, .swiper-slide-prev {
+  transform: scale(0.9) !important;
+  opacity: 0.8;
+}
+
+.swiper-container {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Styles pour Infinite Scroll */
+#infinite-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+
+/* Styles pour masquer la scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+/* Styles pour les boutons radio */
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid var(--custom-2);
+  border-radius: 50px; 
+  cursor: pointer;
+}
+
+input[type="radio"]:checked + label {
+  background-color: var(--custom-2);
+  color: white;
+}
+
+input[type="radio"] + label:hover {
+  background-color: var(--custom-2);
+  color: white;
+}
+
+
+/* Bouton Filtre Active */
+.filter-btn.active {
+  background-color: var(--custom-2);
+  color: white;
+}
+
+
+/* Toggle */
+.toggle-container {
+  position: relative;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-label {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.4s;
+}
+
+.toggle-label::before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  background-color: white;
+  border-radius: 50%;
+  top: 4px;
+  left: 4px;
+  transition: transform 0.4s;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: var(--custom-2);
+}
+
+.toggle-input:checked + .toggle-label::before {
+  transform: translateX(26px);
 }
