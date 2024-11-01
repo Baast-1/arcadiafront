@@ -46,33 +46,37 @@ const Login = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-lg">
-                <h2 className="text-2xl font-bold text-center">Connexion</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="Email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-3 py-2 mt-1 border-2 border-custom-1 rounded-full shadow-sm focus:outline-none"
-                        />
+                <h1 className="text-2xl text-custom-2 font-bold text-center">Connexion</h1>
+                <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center">
+                    <div className="wrapper">
+                        <div className="relative">
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder=" "
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-3 py-2 mt-1 border-2 rounded-full shadow-sm focus:outline-none border-custom-1"
+                            />
+                            <span className="input-placeholder">Email</span>
+                        </div>
                     </div>
-                    <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            id="password"
-                            placeholder="Password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                            className="w-full px-3 py-2 mt-1 border-2 border-custom-1 rounded-full shadow-sm focus:outline-none"
-                        />
+                    <div className="wrapper">
+                        <div className="relative">
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                placeholder=" "
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-3 py-2 mt-1 border-2 rounded-full shadow-sm focus:outline-none border-custom-1"
+                            />
+                            <span className="input-placeholder">Mot de passe</span>
+                        </div>
                     </div>
                     <div className='flex items-center justify-center'>
                         <Button1 

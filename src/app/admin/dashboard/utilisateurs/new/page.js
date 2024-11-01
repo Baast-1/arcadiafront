@@ -34,48 +34,71 @@ const NewUtilisateur = () => {
     };
 
     return (
-        <div className="p-6 bg-custom-6 relative">
+        <div className="p-6 relative">
             <h1 className="text-2xl font-bold mb-6 mt-4 text-custom-1">Créer un nouvel utilisateur</h1>
             <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 mt-24">
-                <div className="flex gap-12 mb-6">
-                    <div className="flex flex-col items-center w-64 gap-2">
-                        <input
-                            name="lastname"
-                            value={formData.lastname}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 mt-1 border-2 border-custom-2 rounded-full shadow-sm focus:outline-none"
-                            placeholder="Nom"
-                        />
-                        <input
-                            name="email"
-                            type="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 mt-1 border-2 border-custom-2 rounded-full shadow-sm focus:outline-none"
-                            placeholder="Email"
-                        />
+            <div className="flex gap-8 mb-6">
+                <div className="grid grid-cols-2 items-center gap-2">
+                    <div className="wrapper">
+                        <div className="relative">
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder=" "
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-3 py-2 mt-1 border-2 rounded-full shadow-sm focus:outline-none border-custom-2"
+                            />
+                            <span className="input-placeholder">Email</span>
+                        </div>
                     </div>
-                    <div className="flex flex-col items-center w-64 gap-2">
-                        <input
-                            name="firstname"
-                            value={formData.firstname}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 mt-1 border-2 border-custom-2 rounded-full shadow-sm focus:outline-none"
-                            placeholder="Prénom"
-                        />
-                        <select
-                            name="role"
-                            value={formData.role}
-                            onChange={handleChange}
-                            className="w-full px-3 py-2 mt-1 border-2 border-custom-2 rounded-full shadow-sm focus:outline-none"
-                        >
-                            <option value="" disabled>Rôle</option>
-                            <option value="admin">Admin</option>
-                            <option value="veterinaire">Vétérinaire</option>
-                            <option value="employe">Employé</option>
-                        </select>
+                    <div className="wrapper">
+                        <div className="relative">
+                            <input
+                                type="text"
+                                name="lastname"
+                                placeholder=" "
+                                value={formData.lastname}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-3 py-2 mt-1 border-2 rounded-full shadow-sm focus:outline-none border-custom-2"
+                            />
+                            <span className="input-placeholder">Nom</span>
+                        </div>
+                    </div>
+                    <div className="wrapper">
+                        <div className="relative">
+                            <input
+                                type="text"
+                                name="firstname"
+                                placeholder=" "
+                                value={formData.firstname}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-3 py-2 mt-1 border-2 rounded-full shadow-sm focus:outline-none border-custom-2"
+                            />
+                            <span className="input-placeholder">Prénom</span>
+                        </div>
+                    </div>
+                    <div className="wrapper">
+                        <div className="relative">
+                            <select
+                                name="role"
+                                value={formData.role}
+                                onChange={handleChange}
+                                className="w-full px-3 py-2 mt-1 border-2 border-custom-2 rounded-full shadow-sm focus:outline-none"
+                            >
+                                <option value="" disabled>Rôle</option>
+                                <option value="admin">Admin</option>
+                                <option value="veterinaire">Vétérinaire</option>
+                                <option value="employe">Employé</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
+            </div>
                 <div className="flex justify-center">
                     <Button2
                         type="submit"

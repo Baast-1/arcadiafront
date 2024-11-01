@@ -14,6 +14,7 @@ module.exports = {
         'custom-3': 'var(--custom-3)',
         'custom-4': 'var(--custom-4)',
         'custom-5': 'var(--custom-5)',
+        'custom-6': 'var(--custom-6)',
       },
       fontFamily: {
         sans: ['Raleway', 'sans-serif'],
