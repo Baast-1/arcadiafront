@@ -88,7 +88,7 @@ export default function DashboardPage() {
     };
 
     if (userRole !== 'admin') {
-        return <p>Accès refusé. Vous n'avez pas les droits nécessaires pour voir cette page.</p>;
+        return <p>Acc&egrave;s refus&eacute;. Vous n&apos;avez pas les droits n&eacute;cessaires pour voir cette page.</p>;
     }
 
     return (
@@ -115,7 +115,7 @@ export default function DashboardPage() {
                 ))}
             </div>
             {loading && <p>Chargement...</p>}
-            {!loading && hours.length === 0 && <p>Aucun horaire trouvé.</p>}
+            {!loading && hours.length === 0 && <p>Aucun horaire trouv&eacute;.</p>}
 
             {showModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
