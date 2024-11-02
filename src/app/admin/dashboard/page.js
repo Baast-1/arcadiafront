@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button1, Button2, Button5 } from "@/components/Buttons";
 import axios from "axios";
+import { UserContext } from '@/utils/userContext';
 
 export default function DashboardPage() {
     const [hours, setHours] = useState([]);
@@ -10,10 +11,13 @@ export default function DashboardPage() {
     const [selectedHour, setSelectedHour] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [hourData, setHourData] = useState({ name: "", start: "", end: "" });
+    const { userRole } = useContext(UserContext);
 
     useEffect(() => {
-        fetchHoraires();
-    }, []);
+        if (userRole === 'admin') {
+            fetchHoraires();
+        }
+    }, [userRole]);
 
     const fetchHoraires = async () => {
         try {
@@ -82,6 +86,10 @@ export default function DashboardPage() {
         setSelectedHour(null);
         setHourData({ name: "", start: "", end: "" });
     };
+
+    if (userRole !== 'admin') {
+        return <p>Accès refusé. Vous n'avez pas les droits nécessaires pour voir cette page.</p>;
+    }
 
     return (
         <div className="bg-white rounded-lg p-6">
