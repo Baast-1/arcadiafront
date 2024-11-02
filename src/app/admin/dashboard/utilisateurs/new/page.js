@@ -35,7 +35,7 @@ const NewUtilisateur = () => {
 
     return (
         <div className="p-6 relative">
-            <h1 className="text-2xl font-bold mb-6 mt-4 text-custom-1">Créer un nouvel utilisateur</h1>
+            <h1 className="text-2xl font-bold mb-6 mt-4 text-custom-1">Cr&eacute;er un nouvel utilisateur</h1>
             <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 mt-24">
             <div className="flex gap-8 mb-6">
                 <div className="grid grid-cols-2 items-center gap-2">
