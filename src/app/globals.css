@@ -151,7 +151,7 @@ input[type="radio"] + label:hover {
 }
 
 
-/* Inputs */
+/* Styles généraux pour tous les inputs */
 .wrapper {
   position: relative;
   width: min(325px, 80vw);
@@ -160,7 +160,8 @@ input[type="radio"] + label:hover {
   color: var(--white);
 }
 
-input {
+/* Styles pour les input, select, et textarea */
+input, select, textarea {
   width: 100%;
   border: 1.5px solid var(--custom-4);
   border-radius: 0.25rem;
@@ -169,19 +170,27 @@ input {
   color: var(--custom-2);
   padding: 1rem;
   transition: border-color 0.5s;
+  font-family: inherit;
 }
 
-input:focus {
+/* Effet de focus */
+input:focus, select:focus, textarea:focus {
   border-color: var(--custom-5);
 }
 
+/* Placeholder flottant */
 input:focus + .input-placeholder,
-input:not(:placeholder-shown) + .input-placeholder {
+input:not(:placeholder-shown) + .input-placeholder,
+select:focus + .input-placeholder,
+select:not([value=""]) + .input-placeholder,
+textarea:focus + .input-placeholder,
+textarea:not(:placeholder-shown) + .input-placeholder {
   transform: translateY(-1.8rem) scale(0.75);
   padding: 0 0.25rem;
   color: var(--custom-2);
 }
 
+/* Styles pour le placeholder */
 .input-placeholder {
   position: absolute;
   top: 1rem;
@@ -191,4 +200,10 @@ input:not(:placeholder-shown) + .input-placeholder {
   background-color: var(--custom-4);
   padding: 0 0.25rem;
   pointer-events: none;
+}
+
+/* Styles spécifiques pour textarea */
+textarea {
+  resize: vertical; /* Permet de redimensionner seulement en hauteur */
+  min-height: 5rem; /* Hauteur minimale pour un meilleur affichage */
 }
