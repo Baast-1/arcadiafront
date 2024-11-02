@@ -129,7 +129,7 @@ const ShowServices = ({ params }) => {
                             <>
                                 <img
                                     src={picturePreviewUrl}
-                                    alt="Aperçu de l'image"
+                                    alt="Aperçu de l&apos;image"
                                     className="w-full h-full rounded-xl object-cover"
                                 />
                                 <div
@@ -143,7 +143,7 @@ const ShowServices = ({ params }) => {
                                 <>
                                     <img
                                         src={`${process.env.NEXT_PUBLIC_API_URL}${formData.picture}`}
-                                        alt="Aperçu de l'image"
+                                        alt="Aperçu de l&apos;image"
                                         className="w-full h-full rounded-xl object-cover"
                                     />
                                     <div

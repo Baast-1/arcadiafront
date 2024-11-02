@@ -90,7 +90,7 @@ const NewServices = () => {
                                 <>
                                     <img
                                         src={picturePreviewUrl}
-                                        alt="Aperçu de l'image"
+                                        alt="Aperçu de l&apos;image"
                                         className="w-full h-full rounded-xl object-cover"
                                     />
                                     <div
