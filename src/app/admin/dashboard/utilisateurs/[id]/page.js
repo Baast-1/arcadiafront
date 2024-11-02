@@ -118,7 +118,7 @@ const UtilisateurShow = ({ params }) => {
                                 required
                                 className="w-full px-3 py-2 mt-1 border-2 rounded-full shadow-sm focus:outline-none border-custom-2"
                             />
-                            <span className="input-placeholder">Prénom</span>
+                            <span className="input-placeholder">Prenom</span>
                         </div>
                     </div>
                     <div className="wrapper">
@@ -129,10 +129,10 @@ const UtilisateurShow = ({ params }) => {
                                 onChange={handleChange}
                                 className="w-full px-3 py-2 mt-1 border-2 border-custom-2 rounded-full shadow-sm focus:outline-none"
                             >
-                                <option value="" disabled>Rôle</option>
+                                <option value="" disabled>Role</option>
                                 <option value="admin">Admin</option>
-                                <option value="veterinaire">Vétérinaire</option>
-                                <option value="employe">Employé</option>
+                                <option value="veterinaire">Veterinaire</option>
+                                <option value="employe">Employe</option>
                             </select>
                         </div>
                     </div>

@@ -35,7 +35,7 @@ const NewUtilisateur = () => {
 
     return (
         <div className="p-6 relative">
-            <h1 className="text-2xl font-bold mb-6 mt-4 text-custom-1">Créer un nouvel utilisateur</h1>
+            <h1 className="text-2xl font-bold mb-6 mt-4 text-custom-1">Cr&eacute;er un nouvel utilisateur</h1>
             <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 mt-24">
             <div className="flex gap-8 mb-6">
                 <div className="grid grid-cols-2 items-center gap-2">
@@ -90,10 +90,10 @@ const NewUtilisateur = () => {
                                 onChange={handleChange}
                                 className="w-full px-3 py-2 mt-1 border-2 border-custom-2 rounded-full shadow-sm focus:outline-none"
                             >
-                                <option value="" disabled>Rôle</option>
+                                <option value="" disabled>Role</option>
                                 <option value="admin">Admin</option>
-                                <option value="veterinaire">Vétérinaire</option>
-                                <option value="employe">Employé</option>
+                                <option value="veterinaire">Veterinaire</option>
+                                <option value="employe">Employe</option>
                             </select>
                         </div>
                     </div>
