@@ -135,7 +135,7 @@ const ShowServices = ({ params }) => {
                                 <div
                                     className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                 >
-                                    <p className="text-custom-2 text-white text-center text-sm font-semibold">Modifier l'image 1920 x 1080</p>
+                                    <p className="text-custom-2 text-white text-center text-sm font-semibold">Modifier l&apos;image 1920 x 1080</p>
                                 </div>
                             </>
                         ) : (
@@ -149,11 +149,11 @@ const ShowServices = ({ params }) => {
                                     <div
                                         className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                     >
-                                        <p className="text-custom-2 text-white text-center text-sm font-semibold">Modifier l'image 1920 x 1080</p>
+                                        <p className="text-custom-2 text-white text-center text-sm font-semibold">Modifier l&apos;image 1920 x 1080</p>
                                     </div>
                                 </>
                             ) : (
-                                <span className="text-custom-1">Cliquez pour télécharger 1920 x 1080</span>
+                                <span className="text-custom-1">Cliquez pour t&eacute;l&eacute;charger 1920 x 1080</span>
                             )
                         )}
                         <input
