@@ -64,6 +64,19 @@ export default function DashboardLayout({ children }) {
                             Services
                         </button>
                     )}
+                    {(userRole === 'admin' || userRole === 'veterinaire') && (
+                        <button 
+                            className="flex items-center font-normal mb-6 gap-2 text-custom-4 hover:scale-105 hover:duration-200"
+                            onClick={() => router.push('/admin/dashboard/habitats')}
+                        >
+                            <img
+                                src='/habitats.svg'
+                                className="w-6 object-cover"
+                                alt="Logo"
+                            />
+                            Habitats
+                        </button>
+                    )}
                 </div>
                 <div className='mt-auto'>
                     <Button5
