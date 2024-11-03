@@ -37,7 +37,6 @@ export default function DashboardPage() {
     const handleNewHour = async (event) => {
         event.preventDefault();
         try {
-            console.log('hourData:', hourData);
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}hours`, hourData, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });

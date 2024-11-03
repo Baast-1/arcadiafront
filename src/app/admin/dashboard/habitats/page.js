@@ -5,43 +5,43 @@ import { useRouter } from 'next/navigation';
 import { Table } from '@/components/Tables';
 import { Button1, Button2 } from '@/components/Buttons';
 
-export default function ServicesList({ params }) {
+export default function HabitatsList({ params }) {
     const router = useRouter();
-    const [services, setServices] = useState([]);
+    const [habitats, setHabitats] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const { slug } = params;
 
     useEffect(() => {
-        fetchServices();
+        fetchHabitats();
     }, []);
 
-    const fetchServices = async () => {
+    const fetchHabitats = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}services`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}habitats`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
             const data = await response.json();
             console.log(data);
-            setServices(data);
+            setHabitats(data);
             setLoading(false);
         } catch (error) {
             console.error('Erreur lors de la récupération des services', error);
-            setServices([]);
+            setHabitats([]);
             setLoading(false);
         }
     };
 
-    const handleRowClick = (serviceFake) => {
-        const service = services.find(service => service.id === serviceFake.id);
-        router.push(`/admin/dashboard/services/${service.id}`);
+    const handleRowClick = (habitatFake) => {
+        const habitat = habitats.find(habitat => habitat.id === habitatFake.id);
+        router.push(`/admin/dashboard/habitats/${habitat.id}`);
     };
 
-    const filtered = Array.isArray(services)
-        ? services.filter(service => {
+    const filtered = Array.isArray(habitats)
+        ? habitats.filter(habitat => {
             const searchTermLower = searchTerm.toLowerCase();
             return (
-                (service.name && service.name.toLowerCase().includes(searchTermLower))
+                (habitat.name && habitat.name.toLowerCase().includes(searchTermLower))
             );
         })
         : [];
@@ -51,31 +51,31 @@ export default function ServicesList({ params }) {
         { label: 'Nom', key: 'name' }, 
         { label: 'Description', key: 'description' }, 
     ];
-    const filteredData = filtered.map(service => ({
-        id: service.id,
+    const filteredData = filtered.map(habitat => ({
+        id: habitat.id,
         picture: (
-            <div key={`photo-${service.id}`} className="flex items-center justify-center relative">
+            <div key={`photo-${habitat.id}`} className="flex items-center justify-center relative">
                 <div className="h-16 w-16 rounded-full overflow-hidden">
                     <img
-                        key={service.id}
-                        src={service.pictures && service.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${service.pictures[0].route}` : '/image.jpg'}
+                        key={habitat.id}
+                        src={habitat.pictures && habitat.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${habitat.pictures[0].route}` : '/image.jpg'}
                         className="w-full h-full object-cover rounded-full"
-                        alt="Service"
+                        alt="habitat"
                         onError={(e) => { e.target.onerror = null; e.target.src = '/image.jpg'; }}
                     />
                 </div>
             </div>
         ),
-        name: service.name,
-        description: service.description ? service.description.substring(0, 50) : '',    }));
+        name: habitat.name,
+        description: habitat.description ? habitat.description.substring(0, 50) : '',    }));
 
     return (
         <div className="bg-white rounded-lg gap-2">
             <div className="flex justify-between">
-                <h2 className="text-2xl font-semibold">Liste des services</h2>
+                <h2 className="text-2xl font-semibold">Liste des habitats</h2>
                 <Button1
-                    texte={'Ajouter un service'}
-                    onClick={() => router.push('/admin/dashboard/services/new')}
+                    texte={'Ajouter un habitat'}
+                    onClick={() => router.push('/admin/dashboard/habitats/new')}
                 >
                 </Button1>
             </div>
@@ -97,7 +97,6 @@ export default function ServicesList({ params }) {
                     data={filteredData} 
                     onRowClick={handleRowClick}
                 />
-                
             </div>
         </div>
     );
