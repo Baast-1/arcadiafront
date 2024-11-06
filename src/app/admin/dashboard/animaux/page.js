@@ -6,44 +6,45 @@ import { Table } from '@/components/Tables';
 import { Button1, Button2 } from '@/components/Buttons';
 import { UserContext } from '@/utils/userContext';
 
-export default function HabitatsList({ params }) {
+export default function AnimalsList({ params }) {
     const router = useRouter();
-    const [habitats, setHabitats] = useState([]);
+    const [animals, setAnimals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const { slug } = params;
     const { userRole } = useContext(UserContext);
 
     useEffect(() => {
-        fetchHabitats();
+        fetchAnimals();
     }, []);
 
-    const fetchHabitats = async () => {
+    const fetchAnimals = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}habitats`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}animals`, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
             const data = await response.json();
             console.log(data);
-            setHabitats(data);
+            setAnimals(data);
             setLoading(false);
         } catch (error) {
-            console.error('Erreur lors de la récupération des services', error);
-            setHabitats([]);
+            console.error('Erreur lors de la récupération des animaux', error);
+            setAnimals([]);
             setLoading(false);
         }
     };
 
-    const handleRowClick = (habitatFake) => {
-        const habitat = habitats.find(habitat => habitat.id === habitatFake.id);
-        router.push(`/admin/dashboard/habitats/${habitat.id}`);
+    const handleRowClick = (animalFake) => {
+        const animal = animals.find(animal => animal.id === animalFake.id);
+        router.push(`/admin/dashboard/animaux/${animal.id}`);
     };
 
-    const filtered = Array.isArray(habitats)
-        ? habitats.filter(habitat => {
+    const filtered = Array.isArray(animals)
+        ? animals.filter(animal => {
             const searchTermLower = searchTerm.toLowerCase();
             return (
-                (habitat.name && habitat.name.toLowerCase().includes(searchTermLower))
+                (animal.name && animal.name.toLowerCase().includes(searchTermLower)) ||
+                (animal.race && animal.race.toLowerCase().includes(searchTermLower))
             );
         })
         : [];
@@ -51,34 +52,37 @@ export default function HabitatsList({ params }) {
     const headers = [
         { label: 'Image', key: 'picture' }, 
         { label: 'Nom', key: 'name' }, 
-        { label: 'Description', key: 'description' }, 
+        { label: 'Race', key: 'race' }, 
+        { label: 'Habitats', key: 'habitat_id' }, 
     ];
-    const filteredData = filtered.map(habitat => ({
-        id: habitat.id,
+    const filteredData = filtered.map(animal => ({
+        id: animal.id,
         picture: (
-            <div key={`photo-${habitat.id}`} className="flex items-center justify-center relative">
-                <div className="h-16 w-16 rounded-full overflow-hidden">
+            <div key={`photo-${animal.id}`} className="flex items-center justify-center relative">
+                <div className="h-12 w-12 rounded-full overflow-hidden">
                     <img
-                        key={habitat.id}
-                        src={habitat.pictures && habitat.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${habitat.pictures[0].route}` : '/image.jpg'}
+                        key={animal.id}
+                        src={animal.pictures && animal.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${animal.pictures[0].route}` : '/image.jpg'}
                         className="w-full h-full object-cover rounded-full"
-                        alt="habitat"
+                        alt="Service"
                         onError={(e) => { e.target.onerror = null; e.target.src = '/image.jpg'; }}
                     />
                 </div>
             </div>
         ),
-        name: habitat.name,
-        description: habitat.description ? habitat.description.substring(0, 50) : '',    }));
+        name: animal.name,
+        race: animal.race,
+        habitat_id: animal.habitat.name
+    }));
 
     return (
         <div className="bg-white rounded-lg gap-2">
             <div className="flex justify-between">
-                <h2 className="text-2xl font-semibold">Liste des habitats</h2>
+                <h2 className="text-2xl font-semibold">Liste des animaux</h2>
                 {userRole === 'admin' && (
                     <Button1
-                        texte={'Ajouter un habitat'}
-                        onClick={() => router.push('/admin/dashboard/habitats/new')}
+                        texte={'Ajouter un animal'}
+                        onClick={() => router.push('/admin/dashboard/animaux/new')}
                     >
                     </Button1>
                 )}
@@ -101,6 +105,7 @@ export default function HabitatsList({ params }) {
                     data={filteredData} 
                     onRowClick={handleRowClick}
                 />
+                
             </div>
         </div>
     );

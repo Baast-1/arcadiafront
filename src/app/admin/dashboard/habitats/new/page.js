@@ -50,11 +50,11 @@ const NewHabitats = () => {
     };
 
     return (
-        <div className="p-6 relative">
+        <div className="p-6 relative h-5/6">
             <h1 className="text-2xl font-bold mb-6 mt-4 text-custom-1">Cr&eacute;er un nouveau habitat</h1>
-            <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 mt-24">
-                <div className="grid grid-cols-2 gap-16 w-full">
-                    <div className="flex flex-col justify-start items-start gap-2">
+            <form onSubmit={handleSubmit} className="flex flex-col items-center gap-8 h-full">
+                <div className="grid grid-cols-2 gap-8 w-full h-full">
+                    <div className="flex flex-col justify-center items-start gap-2">
                         <div className="wrapper">
                             <div className="relative">
                                 <input
@@ -85,7 +85,7 @@ const NewHabitats = () => {
                         </div>
                     </div>
                     <div className="flex justify-center items-center">
-                        <label className="relative w-11/12 h-56 rounded-xl flex items-center justify-center cursor-pointer group">
+                        <label className="relative w-11/12 h-96 rounded-xl flex items-center justify-center cursor-pointer group">
                             {picturePreviewUrl ? (
                                 <>
                                     <img
