@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Button2, Button5, Button1 } from "@/components/Buttons";
+import { UserContext } from "@/utils/userContext";
 
 const ShowHabitats = ({ params }) => {
     const { id } = React.use(params);
@@ -21,6 +22,7 @@ const ShowHabitats = ({ params }) => {
     const [selectedComment, setSelectedComment] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
+    const { userRole } = useContext(UserContext);
 
     useEffect(() => {
         fetchHabitats();
@@ -90,6 +92,7 @@ const ShowHabitats = ({ params }) => {
             ...FormComments,
             state: parseInt(FormComments.state, 10)
         };
+        console.log(updatedFormComments);
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}comments/habitat/${habitat_id}`, updatedFormComments, {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
@@ -151,13 +154,13 @@ const ShowHabitats = ({ params }) => {
     };
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold mb-6 mt-4 text-custom-1">{formData.firstname} {formData.lastname}</h1>
-            <div className="grid grid-cols-2 gap-16 w-full">
-                <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6">
-                    <div className="flex flex-col gap-8">
-                        <div className="flex justify-center items-center">
-                            <label className="relative w-11/12 h-56 rounded-xl flex items-center justify-center cursor-pointer group">
+        <div className="p-6 h-5/6">
+            <h1 className="text-2xl font-bold text-custom-1">{formData.name}</h1>
+            <div className="grid grid-cols-2 gap-8 w-full h-full">
+                <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 h-full">
+                    <div className="flex flex-col gap-2 h-full">
+                        <div className="flex justify-center items-center h-full">
+                            <label className="relative w-11/12 h-5/6 rounded-xl flex items-center justify-center cursor-pointer group">
                                 {picturePreviewUrl ? (
                                     <>
                                         <img
@@ -227,7 +230,8 @@ const ShowHabitats = ({ params }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-center items-end gap-4">
+                        {userRole === 'admin' && (
+                            <div className="flex justify-center items-end gap-4">
                             <Button2
                                 type="submit"
                                 texte="Enregistrer"
@@ -238,20 +242,23 @@ const ShowHabitats = ({ params }) => {
                                 onClick={handleDelete}
                             />    
                         </div>
+                        )}
                     </div>
                 </form>
-                <div>
+                <div className="h-full">
                     <div className="flex flex-row items-center justify-between mb-4">
                         <h2 className="text-xl font-semibold">Commentaires</h2>
-                        <Button1
-                            texte={'Ajouter un commentaire'}
-                            onClick={() => {
-                                setSelectedComment(null);
-                                setShowModal(true);
+                        {userRole === 'veterinaire' && (
+                            <Button1
+                                texte={'Ajouter un commentaire'}
+                                onClick={() => {
+                                    setSelectedComment(null);
+                                    setShowModal(true);
                             }}
                         />
+                        )}
                     </div>
-                    <div className="overflow-y-auto max-h-96 p-6 border-2 border-custom-1 rounded-xl">
+                    <div className="overflow-y-auto p-8 border-2 border-custom-1 rounded-xl h-5/6">
                         {comments.map(comment => (
                             <div key={comment.id} className="relative flex flex-col gap-2 mb-4 p-4 bg-gray-100 rounded-xl shadow-md hover:scale-105 cursor-pointer transition-all group" onClick={() => handleCommentClick(comment)}>
                                 <div className="flex flex-row justify-between">
@@ -288,7 +295,7 @@ const ShowHabitats = ({ params }) => {
                                 <div className="flex flex-row gap-4">
                                     <div className="wrapper">
                                         <div className="relative">
-                                        <select
+                                            <select
                                                 value={selectedComment ? selectedComment.state : FormComments.state}
                                                 onChange={(e) => {
                                                     if (selectedComment) {
@@ -299,6 +306,7 @@ const ShowHabitats = ({ params }) => {
                                                 }}
                                                 required
                                                 className="w-full px-3 py-2 mt-1 border-2 rounded-full shadow-sm focus:outline-none border-custom-2"
+                                                disabled={!!selectedComment}
                                             >
                                                 <option value="" disabled hidden>Choisir...</option>
                                                 <option value="1">Correct</option>
@@ -325,6 +333,7 @@ const ShowHabitats = ({ params }) => {
                                                             setFormComments({ ...FormComments, upgrade: e.target.checked ? 1 : 0 });
                                                         }
                                                     }}
+                                                    disabled={!!selectedComment}
                                                 />
                                                 <label htmlFor="toggle" className="toggle-label"></label>
                                             </div>
@@ -347,6 +356,7 @@ const ShowHabitats = ({ params }) => {
                                             }}
                                             required
                                             className="w-full px-3 py-2 mt-1 border-2 rounded-lg shadow-sm focus:outline-none border-custom-2"
+                                            disabled={!!selectedComment}
                                         />
                                         <span className="input-placeholder">Commentaire</span>
                                     </div>

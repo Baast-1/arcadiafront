@@ -26,17 +26,30 @@ export default function DashboardLayout({ children }) {
                 />
                 <div>
                     {(userRole === 'admin' || userRole === 'veterinaire' || userRole === 'employe') && (
-                        <button 
-                            className="flex items-center font-normal mb-6 gap-2 text-custom-4 hover:scale-105 hover:duration-200"
-                            onClick={() => router.push('/admin/dashboard')}
-                        >
-                            <img
-                                src='/dashboard.svg'
-                                className="w-6 object-cover"
-                                alt="Logo"
-                            />
-                            Tableau de bord
-                        </button>
+                        <>
+                            <button 
+                                className="flex items-center font-normal mb-6 gap-2 text-custom-4 hover:scale-105 hover:duration-200"
+                                onClick={() => router.push('/admin/dashboard')}
+                            >
+                                <img
+                                    src='/dashboard.svg'
+                                    className="w-6 object-cover"
+                                    alt="Logo"
+                                />
+                                Tableau de bord
+                            </button>
+                            <button 
+                                className="flex items-center font-normal mb-6 gap-2 text-custom-4 hover:scale-105 hover:duration-200"
+                                onClick={() => router.push('/admin/dashboard/animaux')}
+                            >
+                                <img
+                                    src='/animaux.svg'
+                                    className="w-6 object-cover"
+                                    alt="Logo"
+                                />
+                                Animaux
+                            </button>
+                        </>
                     )}
                     {userRole === 'admin' && (
                         <button 
