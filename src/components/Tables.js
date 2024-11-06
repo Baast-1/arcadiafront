@@ -5,9 +5,7 @@ export const Table = ({ headers = [], data = [], onRowClick }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
     const rowsPerPage = 6;
-    const [showPopupDelete, setShowPopupDelete] = useState(false);
-
-    // Fonction pour trier les données
+    
     const sortedData = React.useMemo(() => {
         let sortableItems = [...data];
         if (sortConfig !== null) {
@@ -46,7 +44,7 @@ export const Table = ({ headers = [], data = [], onRowClick }) => {
     };
     
     return (
-        <div>
+        <div className='h-4/6'>
             <div className="overflow-x-auto rounded-xl">
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-custom-2 w-full">
@@ -95,11 +93,11 @@ export const Table = ({ headers = [], data = [], onRowClick }) => {
             </div>
 
             {/* Contrôles de pagination */}
-            <div className="flex justify-center align-middle gap-12 items-center mt-4">
+            <div className="flex justify-center align-middle gap-12 items-center mt-2">
                 <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className="px-3 py-2 bg-gray-200 text-gray-600 rounded-full hover:bg-gray-300 disabled:opacity-50"
+                    className="px-3 py-2 bg-gray-200 text-gray-600 rounded-full hover:bg-gray-300 disabled:opacity-50 cursor-pointer"
                 >
                     ←
                 </button>
@@ -109,7 +107,7 @@ export const Table = ({ headers = [], data = [], onRowClick }) => {
                 <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className="px-3 py-2 bg-gray-200 text-gray-600 rounded-full hover:bg-gray-300 disabled:opacity-50"
+                    className="px-3 py-2 bg-gray-200 text-gray-600 rounded-full hover:bg-gray-300 disabled:opacity-50 cursor-pointer"
                 >
                     →
                 </button>

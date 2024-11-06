@@ -65,7 +65,7 @@ export default function UtilisateursList({ params }) {
     }));
 
     return (
-        <div className="bg-white rounded-lg gap-2">
+        <div className="bg-white rounded-lg gap-2 h-5/6">
             <div className="flex justify-between">
                 <h2 className="text-2xl font-semibold">Liste des utilisateurs</h2>
                 <Button1
@@ -86,7 +86,7 @@ export default function UtilisateursList({ params }) {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
-            <div className="mt-6">
+            <div className="mt-6 h-full">
                 <Table
                     headers={headers} 
                     data={filteredData} 
