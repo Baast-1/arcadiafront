@@ -16,6 +16,7 @@ export default function DashboardLayout({ children }) {
     }, [router]);
 
     const handleLogout = () => logout(router);
+
     return (
         <div className="flex items-center h-screen justify-center gap-10">
             <div className="flex flex-col justify-start items-center px-4 py-8 bg-gradient w-1/6 h-5/6 rounded-xl shadow-lg gap-2">
@@ -88,6 +89,19 @@ export default function DashboardLayout({ children }) {
                                 alt="Logo"
                             />
                             Habitats
+                        </button>
+                    )}
+                    {userRole === 'employe' && (
+                        <button 
+                            className="flex items-center font-normal mb-6 gap-2 text-custom-4 hover:scale-105 hover:duration-200"
+                            onClick={() => router.push('/admin/dashboard/avis')}
+                        >
+                            <img
+                                src='/comments.svg'
+                                className="w-6 object-cover"
+                                alt="Logo"
+                            />
+                            Avis
                         </button>
                     )}
                 </div>
