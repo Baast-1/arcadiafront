@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { Table } from '@/components/Tables';
 import { Button1, Button2 } from '@/components/Buttons';
+import { UserContext } from '@/utils/userContext';
 
 export default function ServicesList({ params }) {
     const router = useRouter();
@@ -11,6 +12,7 @@ export default function ServicesList({ params }) {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const { slug } = params;
+    const { userRole } = useContext(UserContext);
 
     useEffect(() => {
         fetchServices();
@@ -73,11 +75,13 @@ export default function ServicesList({ params }) {
         <div className="bg-white rounded-lg gap-2">
             <div className="flex justify-between">
                 <h2 className="text-2xl font-semibold">Liste des services</h2>
-                <Button1
-                    texte={'Ajouter un service'}
-                    onClick={() => router.push('/admin/dashboard/services/new')}
-                >
-                </Button1>
+                {userRole === 'admin' && (
+                    <Button1
+                        texte={'Ajouter un service'}
+                        onClick={() => router.push('/admin/dashboard/services/new')}
+                    >
+                    </Button1>
+                )}
             </div>
             <div className='flex items-center gap-2 mt-4 justify-end'>
                 <svg xmlns="http://www.w3.org/2000/svg" className='w-8 h-8' viewBox="0 0 42.509 42.509">
