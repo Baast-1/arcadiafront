@@ -208,6 +208,7 @@ textarea {
   display: flex;
   overflow: hidden;
   white-space: nowrap;
+  width: 100%;
 }
 
 .scroll-content-avis {

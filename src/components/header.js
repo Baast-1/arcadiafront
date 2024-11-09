@@ -37,9 +37,7 @@ export default function Header() {
                 </nav>
             </header>
 
-            {/* Header pour les écrans mobiles */}
-            <header className="fixed flex lg:hidden top-0 left-0 z-10 w-full bg-white px-4 py-4 items-center justify-between">
-                {/* Logo à gauche */}
+            <header className="fixed flex lg:hidden top-0 left-0 z-10 w-full bg-white px-8 py-4 items-center justify-between">
                 <div>
                     <img
                         src='/logo.webp'
@@ -48,14 +46,12 @@ export default function Header() {
                     />
                 </div>
 
-                {/* Bouton du menu burger à droite */}
                 <button onClick={toggleMenu} className="focus:outline-none">
                     <div className="w-6 h-1 bg-black mb-1"></div>
                     <div className="w-6 h-1 bg-black mb-1"></div>
                     <div className="w-6 h-1 bg-black"></div>
                 </button>
 
-                {/* Menu burger en plein écran */}
                 {isMenuOpen && (
                     <nav className='fixed inset-0 bg-white flex flex-col items-center justify-center space-y-8 z-20'>
                         <button onClick={toggleMenu} className="absolute top-8 right-8 text-3xl">

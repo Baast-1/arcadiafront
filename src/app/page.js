@@ -213,8 +213,8 @@ const fetchHoraires = async () => {
                         </div>
                     </div>
                     <div class="w-full max-h-[26rem] overflow-hidden mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-                      {habitats.map((habitat) => (
-                      <div class="relative w-full h-full group">
+                      {habitats.map((habitat, index) => (
+                      <div key={index} class="relative w-full h-full group">
                           <img 
                             alt="main-picture" 
                             class="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
