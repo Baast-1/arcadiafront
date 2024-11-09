@@ -10,6 +10,9 @@ export default function RootLayout({ children }) {
   return (
     <UserProvider>
       <html lang="en">
+        <head>
+          <meta charSet="UTF-8" />
+        </head>
         <body>
           {children}
         </body>
