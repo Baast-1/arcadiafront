@@ -154,119 +154,101 @@ const fetchHoraires = async () => {
                         </div>
                         <div class="p-4 max-w-4xl">
                             <div class="text-base font-normal text-custom-4 text-justify">
-                                Niché près de la légendaire forêt de Brocéliande en Bretagne, le Zoo Arcadia est un refuge pour des animaux venant des
-                                quatre coins du monde depuis 1960. Notre zoo incarne des valeurs d’écologie et d’indépendance énergétique, offrant un 
-                                cadre sécurisé et respectueux de la nature à nos résidents à poils, plumes et écailles.
+                                Nich&eacute; pr&egrave;s de la l&eacute;gendaire for&ecirc;t de Broc&eacute;liande en Bretagne, le Zoo Arcadia est un refuge pour des animaux venant des
+                                quatre coins du monde depuis 1960. Notre zoo incarne des valeurs d’&eacute;cologie et d’ind&eacute;pendance &eacute;nerg&eacute;tique, offrant un 
+                                cadre s&eacute;curis&eacute; et respectueux de la nature &agrave; nos r&eacute;sidents &agrave; poils, plumes et &eacute;cailles.
                             </div>
                         </div>
                     </div>
                     <div class="rounded-2xl w-full max-h-[26rem] overflow-hidden mt-4">
-                      <img
-                          src='/bear.jpg'
-                          className="w-full h-auto object-cover object-bottom -mt-40"
-                          alt="Logo"
-                      />
+                        <img
+                            src='/bear.jpg'
+                            className="w-full h-auto object-cover object-bottom -mt-40"
+                            alt="Logo"
+                        />
                     </div>
                 </div>
             </div>
 
             {/* Mobile Hero Header */}
             <div class="lg:hidden flex flex-col justify-center items-center w-full">
-              <div style={{ maxWidth: '22rem' }} className='mt-32'>
-                  <div class="w-full flex flex-col justify-center items-center">
-                      <div class="px-4">
-                          <h2 class="text-3xl font-extrabold text-custom-4 text-center mb-4">Bienvenue au zoo
-                              Arcadia
-                          </h2>
-                      </div>
-                      <div class="mb-4">
-                          <div class="text-sm font-normal text-custom-4 text-justify">
-                              Niché près de la légendaire forêt de Brocéliande en Bretagne, le Zoo Arcadia est un refuge pour des animaux venant des
-                              quatre coins du monde depuis 1960. Notre zoo incarne des valeurs d’écologie et d’indépendance énergétique, offrant un 
-                              cadre sécurisé et respectueux de la nature à nos résidents à poils, plumes et écailles.
-                          </div>
-                      </div>
-                      <div class="rounded-2xl w-full overflow-hidden mt-4">
-                          <img
-                            src='/bear.jpg'
-                            className="w-full h-auto object-cover object-bottom"
-                            alt="Logo"
-                        />
-                      </div>
-                  </div>
-              </div>
-          </div>
+                <div style="max-width: 22rem" class="mt-32">
+                    <div class="w-full flex flex-col justify-center items-center">
+                        <div class="px-4">
+                            <h2 class="text-3xl font-extrabold text-custom-4 text-center mb-4">Bienvenue au zoo
+                                Arcadia
+                            </h2>
+                        </div>
+                        <div class="mb-4">
+                            <div class="text-sm font-normal text-custom-4 text-justify">
+                                Nich&eacute; pr&egrave;s de la l&eacute;gendaire for&ecirc;t de Broc&eacute;liande en Bretagne, le Zoo Arcadia est un refuge pour des animaux venant des
+                                quatre coins du monde depuis 1960. Notre zoo incarne des valeurs d’&eacute;cologie et d’ind&eacute;pendance &eacute;nerg&eacute;tique, offrant un 
+                                cadre s&eacute;curis&eacute; et respectueux de la nature &agrave; nos r&eacute;sidents &agrave; poils, plumes et &eacute;cailles.
+                            </div>
+                        </div>
+                        <div class="rounded-2xl w-full overflow-hidden mt-4">
+                            <img
+                                src='/bear.jpg'
+                                className="w-full h-auto object-cover object-bottom"
+                                alt="Logo"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-          {/* Desktop habitats animal */}
-          <div class="hidden lg:flex flex-col justify-center items-center w-full">
+
+            {/* Desktop habitats animal */}
+            <div class="hidden lg:flex flex-col justify-center items-center w-full">
                 <div class="max-w-[70rem] mt-32">
                     <div class="w-full flex flex-col justify-center items-center">
                         <div class="px-4">
-                          <h2 class="text-2xl font-extrabold text-custom-4">Les Habitats du Zoo</h2>
+                            <h2 class="text-2xl font-extrabold text-custom-4">Les Habitats du Zoo</h2>
                         </div>
                         <div class="p-4 max-w-4xl">
                             <div class="text-base font-normal text-custom-4 text-justify">
-                            Au Zoo Arcadia, nous avons recréé plusieurs habitats naturels pour que nos animaux puissent vivre dans un environnement
-                            qui ressemble à leur milieu d'origine. Explorez la Savane, la Jungle ou les Marais, et découvrez des animaux fascinants dans
-                            un cadre respectueux de la nature.
+                                Au Zoo Arcadia, nous avons recr&eacute;&eacute; plusieurs habitats naturels pour que nos animaux puissent vivre dans un environnement
+                                qui ressemble &agrave; leur milieu d'origine. Explorez la Savane, la Jungle ou les Marais, et d&eacute;couvrez des animaux fascinants dans
+                                un cadre respectueux de la nature.
                             </div>
                         </div>
                     </div>
                     <div class="w-full max-h-[26rem] overflow-hidden mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-                      {habitats.map((habitat) => (
-                      <div class="relative w-full h-full group">
-                          <img 
-                            alt="main-picture" 
-                            class="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                            src={habitat.pictures && habitat.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${habitat.pictures[0].route}` : '/image.jpg'}
-                          />
-                          <p class="absolute inset-0 flex items-center justify-center text-custom-4 bg-black bg-opacity-50 px-2 py-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">{habitat.name}</p>
-                      </div>
-                      ))}
+                        {habitats.map((habitat) => (
+                            <div class="relative w-full h-full group" key={habitat.id}>
+                                <img 
+                                    alt="main-picture" 
+                                    class="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                    src={habitat.pictures && habitat.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${habitat.pictures[0].route}` : '/image.jpg'}
+                                />
+                                <p class="absolute inset-0 flex items-center justify-center text-custom-4 bg-black bg-opacity-50 px-2 py-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                                    {habitat.name}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                     <div className="scroll-container">
                         <div className="scroll-content">
                             {animals.map((animal) => (
-                            animal.pictures && animal.pictures.length > 0 ? (
-                                animal.pictures.map((picture, index) => (
-                                <div key={index} className="scroll-item relative group">
-                                    <img 
-                                    alt="animal-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                                    src={`${process.env.NEXT_PUBLIC_API_URL}${picture.route}`}
-                                    />
-                                </div>
-                                ))
-                            ) : (
-                                <div key={animal.id} className="scroll-item relative group">
-                                <img 
-                                    alt="default-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                                    src='/image.jpg'
-                                />
-                                </div>
-                            )
-                            ))}
-                            {animals.map((animal) => (
-                            animal.pictures && animal.pictures.length > 0 ? (
-                                animal.pictures.map((picture, index) => (
-                                <div key={`duplicate-${index}`} className="scroll-item relative group">
-                                    <img 
-                                    alt="animal-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                                    src={`${process.env.NEXT_PUBLIC_API_URL}${picture.route}`}
-                                    />
-                                </div>
-                                ))
-                            ) : (
-                                <div key={`duplicate-${animal.id}`} className="scroll-item relative group">
-                                <img 
-                                    alt="default-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                                    src='/image.jpg'
-                                />
-                                </div>
-                            )
+                                animal.pictures && animal.pictures.length > 0 ? (
+                                    animal.pictures.map((picture, index) => (
+                                        <div key={`animal-${animal.id}-pic-${index}`} className="scroll-item relative group">
+                                            <img 
+                                                alt="animal-picture" 
+                                                className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                                src={`${process.env.NEXT_PUBLIC_API_URL}${picture.route}`}
+                                            />
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div key={`animal-${animal.id}`} className="scroll-item relative group">
+                                        <img 
+                                            alt="default-picture" 
+                                            className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                            src='/image.jpg'
+                                        />
+                                    </div>
+                                )
                             ))}
                         </div>
                     </div>
@@ -282,78 +264,57 @@ const fetchHoraires = async () => {
 
             {/* Mobile Habitats Animal */}
             <div class="lg:hidden flex flex-col justify-center items-center w-full">
-                <div style={{ maxWidth: '22rem' }} className='mt-16'>
+                <div style="max-width: 22rem" className="mt-16">
                     <div class="w-full flex flex-col justify-center items-center">
                         <div class="px-4 py-4">
                             <h2 class="text-2xl font-extrabold text-custom-4">Les Habitats du Zoo</h2>
                         </div>
                         <div class="mb-8">
                             <div class="text-sm font-normal text-custom-4 text-justify">
-                            Au Zoo Arcadia, nous avons recréé plusieurs habitats naturels pour que nos animaux puissent vivre dans un environnement
-                            qui ressemble à leur milieu d'origine. Explorez la Savane, la Jungle ou les Marais, et découvrez des animaux fascinants dans
-                            un cadre respectueux de la nature.
+                                Au Zoo Arcadia, nous avons recr&eacute;&eacute; plusieurs habitats naturels pour que nos animaux puissent vivre dans un environnement
+                                qui ressemble &agrave; leur milieu d'origine. Explorez la Savane, la Jungle ou les Marais, et d&eacute;couvrez des animaux fascinants dans
+                                un cadre respectueux de la nature.
                             </div>
                         </div>
                     </div>
                     <Swiper
-                        effect={'cards'}
+                        effect="cards"
                         grabCursor={true}
                         modules={[EffectCards]}
-                        className="mySwiper"     
+                        className="mySwiper"
                     >
                         {habitats.map((habitat, index) => (
-                        <SwiperSlide key={index}>
-                            <img
-                                alt="habitat-picture"
-                                className="w-full h-full object-cover"
-                                src={habitat.pictures && habitat.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${habitat.pictures[0].route}` : '/image.jpg'}
-                            />
-                        </SwiperSlide>
+                            <SwiperSlide key={`habitat-${index}`}>
+                                <img
+                                    alt="habitat-picture"
+                                    className="w-full h-full object-cover"
+                                    src={habitat.pictures && habitat.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${habitat.pictures[0].route}` : '/image.jpg'}
+                                />
+                            </SwiperSlide>
                         ))}
                     </Swiper>
                     <div className="scroll-container mt-8">
                         <div className="scroll-content">
                             {animals.map((animal) => (
-                            animal.pictures && animal.pictures.length > 0 ? (
-                                animal.pictures.map((picture, index) => (
-                                <div key={index} className="scroll-item relative group">
-                                    <img 
-                                    alt="animal-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                                    src={`${process.env.NEXT_PUBLIC_API_URL}${picture.route}`}
-                                    />
-                                </div>
-                                ))
-                            ) : (
-                                <div key={animal.id} className="scroll-item relative group">
-                                <img 
-                                    alt="default-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                                    src='/image.jpg'
-                                />
-                                </div>
-                            )
-                            ))}
-                            {animals.map((animal) => (
-                            animal.pictures && animal.pictures.length > 0 ? (
-                                animal.pictures.map((picture, index) => (
-                                <div key={`duplicate-${index}`} className="scroll-item relative group">
-                                    <img 
-                                    alt="animal-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                                    src={`${process.env.NEXT_PUBLIC_API_URL}${picture.route}`}
-                                    />
-                                </div>
-                                ))
-                            ) : (
-                                <div key={`duplicate-${animal.id}`} className="scroll-item relative group">
-                                <img 
-                                    alt="default-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                                    src='/image.jpg'
-                                />
-                                </div>
-                            )
+                                animal.pictures && animal.pictures.length > 0 ? (
+                                    animal.pictures.map((picture, index) => (
+                                        <div key={`mobile-animal-${animal.id}-pic-${index}`} className="scroll-item relative group">
+                                            <img 
+                                                alt="animal-picture" 
+                                                className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                                src={`${process.env.NEXT_PUBLIC_API_URL}${picture.route}`}
+                                            />
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div key={`mobile-animal-${animal.id}`} className="scroll-item relative group">
+                                        <img 
+                                            alt="default-picture" 
+                                            className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                            src='/image.jpg'
+                                        />
+                                    </div>
+                                )
                             ))}
                         </div>
                     </div>
@@ -368,18 +329,19 @@ const fetchHoraires = async () => {
             </div>
 
 
+
             {/* Desktop Services */}
             <div class="hidden lg:flex flex-col justify-center items-center w-full">
                 <div class="max-w-[70rem] mt-32">
                     <div class="w-full flex flex-col justify-center items-center">
                         <div class="px-4">
-                          <h2 class="text-2xl font-extrabold text-custom-4">Les Services du Zoo</h2>
+                        <h2 class="text-2xl font-extrabold text-custom-4">Les Services du Zoo</h2>
                         </div>
                         <div class="p-4 max-w-4xl">
                             <div class="text-base font-normal text-custom-4 text-justify">
-                            Lors de votre visite, profitez de nos différents services pour rendre votre journée encore plus agréable : dégustez un repas 
-                            dans notre restaurant, suivez nos visites guidées pour en apprendre plus sur nos animaux, ou laissez-vous emporter par une
-                            balade en petit train à travers le zoo.
+                            Lors de votre visite, profitez de nos diff&eacute;rents services pour rendre votre journ&eacute;e encore plus agr&eacute;able : d&eacute;gustez un repas 
+                            dans notre restaurant, suivez nos visites guid&eacute;es pour en apprendre plus sur nos animaux, ou laissez-vous emporter par une
+                            balade en petit train &agrave; travers le zoo.
                             </div>
                         </div>
                     </div>
@@ -414,9 +376,9 @@ const fetchHoraires = async () => {
                         </div>
                         <div class="mb-8">
                             <div class="text-sm font-normal text-custom-4 text-justify">
-                            Lors de votre visite, profitez de nos différents services pour rendre votre journée encore plus agréable : dégustez un repas 
-                            dans notre restaurant, suivez nos visites guidées pour en apprendre plus sur nos animaux, ou laissez-vous emporter par une
-                            balade en petit train à travers le zoo.
+                            Lors de votre visite, profitez de nos diff&eacute;rents services pour rendre votre journ&eacute;e encore plus agr&eacute;able : d&eacute;gustez un repas 
+                            dans notre restaurant, suivez nos visites guid&eacute;es pour en apprendre plus sur nos animaux, ou laissez-vous emporter par une
+                            balade en petit train &agrave; travers le zoo.
                             </div>
                         </div>
                     </div>
@@ -445,6 +407,7 @@ const fetchHoraires = async () => {
                     />
                 </div>
             </div>
+
 
             {/* Desktop Avis */}
             <div class="hidden lg:flex flex-col justify-center items-center w-full">
