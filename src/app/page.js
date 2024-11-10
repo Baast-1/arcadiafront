@@ -271,7 +271,7 @@ const fetchHoraires = async () => {
                         </div>
                     </div>
                     <div className="w-full flex justify-center items-center mt-8">
-                        <Button1
+                        <Button2
                             type="submit"
                             texte="Nos habitats"
                             link="/habitats"
@@ -358,7 +358,7 @@ const fetchHoraires = async () => {
                         </div>
                     </div>
                     <div className="w-full flex justify-center items-center mt-8">
-                        <Button1
+                        <Button2
                             type="submit"
                             texte="Nos habitats"
                             link="/habitats"
@@ -397,7 +397,7 @@ const fetchHoraires = async () => {
                     </div>
                 </div>
                 <div className="w-full flex justify-center items-center mt-8">
-                    <Button1
+                    <Button2
                         type="submit"
                         texte="Nos services"
                         link="/habitats"
@@ -438,7 +438,7 @@ const fetchHoraires = async () => {
                     </Swiper>
                 </div>
                 <div className="w-full flex justify-center items-center mt-8">
-                    <Button1
+                    <Button2
                         type="submit"
                         texte="Nos services"
                         link="/habitats"
@@ -491,7 +491,7 @@ const fetchHoraires = async () => {
                             </div>
                         </div>
                         <div className="flex justify-center">
-                            <Button2
+                            <Button1
                                 type="submit"
                                 texte="Enregistrer"
                             />
@@ -545,7 +545,7 @@ const fetchHoraires = async () => {
                             </div>
                         </div>
                         <div className="flex justify-center">
-                            <Button2
+                            <Button1
                                 type="submit"
                                 texte="Enregistrer"
                             />
