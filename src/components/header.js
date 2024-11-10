@@ -29,7 +29,7 @@ export default function Header() {
                         <Link href="/nos-services">Services</Link>
                     </div>
                     <div>
-                        <Link href="/nos-habitats">A propos</Link>
+                        <Link href="/nos-habitats">Nos habitats</Link>
                     </div>
                     <div>
                         <Link href="/contact">Contact</Link>
