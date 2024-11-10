@@ -119,13 +119,6 @@ export default function NosServices() {
                         </div>
                     )}
                 </div>
-                <div className="w-full flex justify-center items-center mt-8">
-                    <Button2
-                        type="submit"
-                        texte="Nos services"
-                        link="/habitats"
-                    />
-                </div>
             </div>
             <Footer />
         </div>

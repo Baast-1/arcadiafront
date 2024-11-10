@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-white mt-8 py-8 flex flex-col lg:flex-row justify-around items-center">
+        <footer className="w-full bg-white py-8 flex flex-col lg:flex-row justify-around items-center mt-auto">
             <div className="mb-4 lg:mb-0">
                 <img
                     src='/logo.webp'
