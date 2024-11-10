@@ -26,10 +26,10 @@ export default function Header() {
                         <Link href="/">Accueil</Link>
                     </div>
                     <div>
-                        <Link href="/services">Services</Link>
+                        <Link href="/nos-services">Services</Link>
                     </div>
                     <div>
-                        <Link href="/about">A propos</Link>
+                        <Link href="/nos-habitats">A propos</Link>
                     </div>
                     <div>
                         <Link href="/contact">Contact</Link>
