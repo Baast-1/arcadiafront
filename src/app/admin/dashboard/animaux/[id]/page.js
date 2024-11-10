@@ -22,7 +22,7 @@ const ShowAnimal = ({ params }) => {
     const [FormFeeds, setFormFeeds] = useState({name : "", quantity : "", animal_id : id, created_at : ""});
     const [feeds, setFeeds] = useState([]);
     const [selectedFeed, setSelectedFeed] = useState(null);
-    const [FormReports, setFormReports] = useState({state : "", feed : "", grammage: "", animal_id : id, created_at : ""});
+    const [FormReports, setFormReports] = useState({state : "", feed : "", grammage: "", detailState: "", animal_id : id, created_at : ""});
     const [reports, setReports] = useState([]);
     const [selectedReport, setSelectedReport] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -508,7 +508,7 @@ const ShowAnimal = ({ params }) => {
                                     </div>
                                 </div>
                                 {!selectedFeed && (
-                                    <Button2
+                                    <Button1
                                         texte={'Enregistrer'}
                                         onClick={handleNewFeed}
                                     />
@@ -535,7 +535,7 @@ const ShowAnimal = ({ params }) => {
                                 </svg>
                             </button>
                             <form className="flex flex-col justify-center items-center gap-4">
-                                <div className="grid grid-cols-1 gap-4">
+                                <div className="grid grid-cols-2 gap-4">
                                     <div className="wrapper">
                                         <div className="relative">
                                             <input
@@ -619,8 +619,28 @@ const ShowAnimal = ({ params }) => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="wrapper" style={{ width: '100%' }}>
+                                    <div className="relative">
+                                        <textarea
+                                            type="text"
+                                            placeholder=" "
+                                            value={selectedReport ? selectedReport.detailState : FormReports.detailState}
+                                            onChange={(e) => {
+                                                if (selectedReport) {
+                                                    setSelectedReport({ ...selectedReport, detailState: e.target.value });
+                                                } else {
+                                                    setFormReports({ ...FormReports, detailState: e.target.value });
+                                                }
+                                            }}
+                                            required
+                                            className="w-full px-3 py-2 mt-1 border-2 rounded-lg shadow-sm focus:outline-none border-custom-2"
+                                            disabled={!!selectedReport}
+                                        />
+                                        <span className="input-placeholder">Détail de l'animal</span>
+                                    </div>
+                                </div>
                                 {!selectedFeed && (
-                                    <Button2
+                                    <Button1
                                         texte={'Enregistrer'}
                                         onClick={handleNewReport}
                                     />
