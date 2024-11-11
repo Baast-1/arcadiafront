@@ -101,7 +101,7 @@ export default function NosHabitats() {
                     <div className="w-full flex flex-col justify-center items-center">
                         <h2 className="text-2xl font-extrabold text-custom-4 mb-8">Nos Habitats</h2>
                         <div className="px-4 mb-24">
-                            <div className="grid grid-cols-4 gap-8">
+                            <div className="grid gap-8" style={{ gridTemplateColumns: `repeat(${habitats.length}, minmax(200px, 1fr))` }}>
                                 {habitats.map((habitat, index) => (
                                     <div 
                                         key={index} 

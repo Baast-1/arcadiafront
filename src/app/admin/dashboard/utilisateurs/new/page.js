@@ -100,11 +100,11 @@ const NewUtilisateur = () => {
                 </div>
             </div>
                 <div className="flex justify-center">
-                    <Button2
+                    <Button1
                         type="submit"
                         texte="Enregistrer"
                     >    
-                    </Button2>
+                    </Button1>
                 </div>
             </form>
         </div>

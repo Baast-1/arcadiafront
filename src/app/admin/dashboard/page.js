@@ -21,10 +21,10 @@ export default function DashboardPage() {
         if (userRole === 'admin') {
             fetchHoraires();
             fetchAnimals();
-        }
-        else {
+        } else {
             router.push('/admin/dashboard/animaux');
         }
+        console.log('Role:', userRole);
     }, [userRole]);
 
     const fetchAnimals = async () => {
