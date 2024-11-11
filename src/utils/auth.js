@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { updateUserRole } from '@/utils/userContext';
 
 export const login = async (email, password) => {
     try {
@@ -6,6 +7,8 @@ export const login = async (email, password) => {
         const { token } = response.data;
         console.log('API response:', response.data);
         localStorage.setItem('token', token);
+        updateUserRole();
+
         return response.data;
     } catch (error) {
         throw new Error(error.response?.data.errorCode || 'Login failed');
