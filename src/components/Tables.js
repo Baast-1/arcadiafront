@@ -76,9 +76,9 @@ export const Table = ({ headers = [], data = [], onRowClick }) => {
                                     onClick={() => onRowClick(row)}
                                 >
                                     {Object.entries(row).map(([key, cell], cellIndex) => (
-                                        key !== 'id' && cell !== undefined && cell !== null && (
+                                        key !== 'id' && key !== '_id' && cell !== undefined && cell !== null && (
                                             <td
-                                                key={`${rowIndex}-${cellIndex}`} // Utiliser une clé unique
+                                                key={`${rowIndex}-${cellIndex}`}
                                                 className="px-6 py-4 whitespace-nowrap text-center text-sm text-custom-1 group-hover:transform transition-transform duration-200"
                                             >
                                                 {cell}

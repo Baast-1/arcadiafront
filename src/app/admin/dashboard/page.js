@@ -4,20 +4,44 @@ import React, { useState, useEffect, useContext } from "react";
 import { Button1, Button2, Button5 } from "@/components/Buttons";
 import axios from "axios";
 import { UserContext } from '@/utils/userContext';
+import { useRouter } from 'next/navigation';
+import PieChart from "@/components/PieCharts";
 
 export default function DashboardPage() {
     const [hours, setHours] = useState([]);
+    const [animals, setAnimals] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedHour, setSelectedHour] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [hourData, setHourData] = useState({ name: "", start: "", end: "" });
     const { userRole } = useContext(UserContext);
+    const router = useRouter();
 
     useEffect(() => {
         if (userRole === 'admin') {
             fetchHoraires();
+            fetchAnimals();
+        }
+        else {
+            router.push('/admin/dashboard/animaux');
         }
     }, [userRole]);
+
+    const fetchAnimals = async () => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}animals`, {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            });
+            const data = await response.json();
+            console.log(data);
+            setAnimals(data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Erreur lors de la récupération des animaux', error);
+            setAnimals([]);
+            setLoading(false);
+        }
+    };
 
     const fetchHoraires = async () => {
         try {
@@ -86,35 +110,46 @@ export default function DashboardPage() {
         setHourData({ name: "", start: "", end: "" });
     };
 
-    if (userRole !== 'admin') {
-        return <p>Acc&egrave;s refus&eacute;. Vous n&apos;avez pas les droits n&eacute;cessaires pour voir cette page.</p>;
-    }
-
     return (
-        <div className="bg-white rounded-lg p-6">
-            <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-semibold">Liste des Horaires</h2>
-                <Button1
-                    texte={'Ajouter un horaire'}
-                    onClick={() => openModal()}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-full"
-                />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-4">
-                {hours.map(hour => (
-                    <div 
-                        key={hour.id} 
-                        className="bg-gray-100 p-4 rounded-lg shadow-md cursor-pointer"
-                        onClick={() => openModal(hour)}
-                    >
-                        <h3 className="text-lg font-semibold mb-2">{hour.name}</h3>
-                        <p className="text-sm text-gray-600">Debut: {hour.start.slice(0, 5)}</p>
-                        <p className="text-sm text-gray-600">Fin: {hour.end.slice(0, 5)}</p>
+        <div className="bg-white rounded-lg p-6 h-5/6">
+            <h2 className="text-2xl font-semibold mb-4">Dashboard</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h2 className="text-2xl font-semibold mb-4">Répartition des vues par animal</h2>
+                    <div className="mb-8 w-full">
+                        {animals.length > 0 ? (
+                            <PieChart data={animals} />
+                        ) : (
+                            <p>Chargement des données...</p>
+                        )}
                     </div>
-                ))}
+                </div>
+                <div>
+                    <div className="flex justify-between items-center mb-4">
+                        <h2 className="text-2xl font-semibold">Liste des Horaires</h2>
+                        <Button1
+                            texte={'Ajouter un horaire'}
+                            onClick={() => openModal()}
+                            className="px-4 py-2 bg-blue-500 text-white rounded-full"
+                        />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                        {hours.map(hour => (
+                            <div 
+                                key={hour.id} 
+                                className="bg-gray-100 p-4 rounded-lg shadow-md cursor-pointer"
+                                onClick={() => openModal(hour)}
+                            >
+                                <h3 className="text-lg font-semibold mb-2">{hour.name}</h3>
+                                <p className="text-sm text-gray-600">Debut: {hour.start.slice(0, 5)}</p>
+                                <p className="text-sm text-gray-600">Fin: {hour.end.slice(0, 5)}</p>
+                            </div>
+                        ))}
+                    </div>
+                    {loading && <p>Chargement...</p>}
+                    {!loading && hours.length === 0 && <p>Aucun horaire trouv&eacute;.</p>}
+                </div>
             </div>
-            {loading && <p>Chargement...</p>}
-            {!loading && hours.length === 0 && <p>Aucun horaire trouv&eacute;.</p>}
 
             {showModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -175,12 +210,12 @@ export default function DashboardPage() {
                             {selectedHour ? (
                                 <>
                                     <div className="flex flex-row gap-4">
-                                        <Button2 texte={'Modifier'} onClick={handleUpdateHour} />
+                                        <Button1 texte={'Modifier'} onClick={handleUpdateHour} />
                                         <Button5 texte={'Supprimer'} onClick={handleDeleteHour} />
                                     </div>
                                 </>
                             ) : (
-                                <Button2 texte={'Enregistrer'} onClick={handleNewHour} />
+                                <Button1 texte={'Enregistrer'} onClick={handleNewHour} />
                             )}
                         </form>
                     </div>

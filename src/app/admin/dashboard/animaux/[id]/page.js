@@ -659,7 +659,7 @@ const ShowAnimal = ({ params }) => {
             </div>
             {userRole === 'admin' && (
             <div className="flex justify-center items-end gap-4 mt-8">
-                <Button2
+                <Button1
                     type="submit"
                     texte="Enregistrer"
                 />    

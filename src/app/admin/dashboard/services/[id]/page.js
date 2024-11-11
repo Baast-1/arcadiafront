@@ -4,7 +4,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Button2, Button5 } from "@/components/Buttons";
+import { Button1, Button2, Button5 } from "@/components/Buttons";
 
 const ShowServices = ({ params }) => {
     const { id } = React.use(params);
@@ -166,7 +166,7 @@ const ShowServices = ({ params }) => {
                 </div>
             </div>
             <div className="flex justify-center items-end gap-4">
-                <Button2
+                <Button1
                     type="submit"
                     texte="Enregistrer"
                 />    

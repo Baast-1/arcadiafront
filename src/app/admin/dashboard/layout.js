@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { logout } from '@/utils/auth';
 import { Button5 } from '@/components/Buttons';
@@ -9,6 +9,11 @@ import { UserContext } from '@/utils/userContext';
 export default function DashboardLayout({ children }) {
     const router = useRouter();
     const { userRole } = useContext(UserContext);
+    const [role, setRole] = useState(null);
+
+    useEffect(() => {
+        setRole(userRole);
+    }, [userRole]);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -26,7 +31,7 @@ export default function DashboardLayout({ children }) {
                     alt="Logo"
                 />
                 <div>
-                    {(userRole === 'admin' || userRole === 'veterinaire' || userRole === 'employe') && (
+                    {userRole === 'admin' && (
                         <>
                             <button 
                                 className="flex items-center font-normal mb-6 gap-2 text-custom-4 hover:scale-105 hover:duration-200"
@@ -41,28 +46,28 @@ export default function DashboardLayout({ children }) {
                             </button>
                             <button 
                                 className="flex items-center font-normal mb-6 gap-2 text-custom-4 hover:scale-105 hover:duration-200"
-                                onClick={() => router.push('/admin/dashboard/animaux')}
+                                onClick={() => router.push('/admin/dashboard/utilisateurs')}
                             >
                                 <img
-                                    src='/animaux.svg'
+                                    src='/users.svg'
                                     className="w-6 object-cover"
                                     alt="Logo"
                                 />
-                                Animaux
+                                Utilisateurs
                             </button>
                         </>
                     )}
-                    {userRole === 'admin' && (
+                    {(userRole === 'admin' || userRole === 'veterinaire' || userRole === 'employe') && (
                         <button 
                             className="flex items-center font-normal mb-6 gap-2 text-custom-4 hover:scale-105 hover:duration-200"
-                            onClick={() => router.push('/admin/dashboard/utilisateurs')}
+                            onClick={() => router.push('/admin/dashboard/animaux')}
                         >
                             <img
-                                src='/users.svg'
+                                src='/animaux.svg'
                                 className="w-6 object-cover"
                                 alt="Logo"
                             />
-                            Utilisateurs
+                            Animaux
                         </button>
                     )}
                     {(userRole === 'admin' || userRole === 'employe') && (
