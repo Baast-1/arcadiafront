@@ -56,7 +56,7 @@ export default function AvisList() {
     
     
     const handleRowClick = (avisItem) => {
-        const selected = avis.find(a => a.id === avisItem.id);
+        const selected = avis.find(a => a._id === avisItem._id);
         console.log(selected);
         setSelectedAvis(selected);
         setShowModal(true);
@@ -83,7 +83,7 @@ export default function AvisList() {
         { label: 'Date de création', key: 'createdAt' }, 
     ];
     const filteredData = filtered.map(avis => ({
-        id: avis.id,
+        _id: avis._id,
         pseudo: avis.pseudo,
         message: avis.message.substring(0, 50),
         isVisible: avis.isVisible ? 'Oui' : 'Non',
@@ -178,11 +178,11 @@ export default function AvisList() {
                                 </div>
                             </div>
                         </div>
-                        <Button2
+                        <Button1
                             texte="Enregistrer"
                             onClick={handleAvis}
                         >
-                        </Button2>
+                        </Button1>
                     </div>
                 </div>
             </div>

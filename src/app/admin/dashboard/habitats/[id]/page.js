@@ -232,7 +232,7 @@ const ShowHabitats = ({ params }) => {
                         </div>
                         {userRole === 'admin' && (
                             <div className="flex justify-center items-end gap-4">
-                            <Button2
+                            <Button1
                                 type="submit"
                                 texte="Enregistrer"
                             />    
@@ -363,7 +363,7 @@ const ShowHabitats = ({ params }) => {
                                 </div>
                             </div>
                             {!selectedComment && (
-                                <Button2
+                                <Button1
                                     texte={'Enregistrer'}
                                     onClick={handleNewComment}
                                 />

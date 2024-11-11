@@ -486,7 +486,7 @@ const fetchHoraires = async () => {
                                 required
                                 className="w-full bg-white px-3 py-2 mt-1 rounded-lg shadow-sm focus:outline-none"
                             />
-                            <div className="text-right text-gray-500">
+                            <div className="text-right text-white">
                                 {charCount}/100
                             </div>
                         </div>
