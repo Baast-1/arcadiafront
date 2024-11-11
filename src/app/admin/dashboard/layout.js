@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import { logout } from '@/utils/auth';
 import { Button5 } from '@/components/Buttons';
@@ -9,11 +9,6 @@ import { UserContext } from '@/utils/userContext';
 export default function DashboardLayout({ children }) {
     const router = useRouter();
     const { userRole } = useContext(UserContext);
-    const [role, setRole] = useState(null);
-
-    useEffect(() => {
-        setRole(userRole);
-    }, [userRole]);
 
     useEffect(() => {
         const token = localStorage.getItem('token');

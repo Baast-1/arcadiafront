@@ -49,6 +49,8 @@ export default function Home() {
             });
             console.log('API response:', response.data);
             setMessage('Votre avis a bien été envoyé pour validation');
+            setFormData({ pseudo: '', message: '' });
+            setCharCount(0);
         } catch (error) {
             console.error('Erreur lors de la création de l\'avis:', error);
         }
@@ -212,17 +214,17 @@ const fetchHoraires = async () => {
                             </div>
                         </div>
                     </div>
-                    <div class="w-full max-h-[26rem] overflow-hidden mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-                      {habitats.map((habitat, index) => (
-                      <div key={index} class="relative w-full h-full group">
-                          <img 
-                            alt="main-picture" 
-                            class="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                            src={habitat.pictures && habitat.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${habitat.pictures[0].route}` : '/image.jpg'}
-                          />
-                          <p class="absolute inset-0 flex items-center justify-center text-custom-4 bg-black bg-opacity-50 px-2 py-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">{habitat.name}</p>
-                      </div>
-                      ))}
+                    <div className="w-full max-h-[26rem] overflow-hidden mt-4 grid gap-4 mb-4" style={{ gridTemplateColumns: `repeat(${habitats.length}, minmax(200px, 1fr))` }}>
+                        {habitats.map((habitat, index) => (
+                            <div key={index} className="relative w-full h-full group">
+                                <img 
+                                    alt="main-picture" 
+                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                    src={habitat.pictures && habitat.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${habitat.pictures[0].route}` : '/image.jpg'}
+                                />
+                                <p className="absolute inset-0 flex items-center justify-center text-custom-4 bg-black bg-opacity-50 px-2 py-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">{habitat.name}</p>
+                            </div>
+                        ))}
                     </div>
                     <div className="scroll-container">
                         <div className="scroll-content">
@@ -232,7 +234,7 @@ const fetchHoraires = async () => {
                                 <div key={index} className="scroll-item relative group">
                                     <img 
                                     alt="animal-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                    className="w-full h-full object-cover object-bottom rounded-2xl" 
                                     src={`${process.env.NEXT_PUBLIC_API_URL}${picture.route}`}
                                     />
                                 </div>
@@ -241,7 +243,7 @@ const fetchHoraires = async () => {
                                 <div key={animal.id} className="scroll-item relative group">
                                 <img 
                                     alt="default-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                    className="w-full h-full object-cover object-bottom rounded-2xl" 
                                     src='/image.jpg'
                                 />
                                 </div>
@@ -253,7 +255,7 @@ const fetchHoraires = async () => {
                                 <div key={`duplicate-${index}`} className="scroll-item relative group">
                                     <img 
                                     alt="animal-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                    className="w-full h-full object-cover object-bottom rounded-2xl" 
                                     src={`${process.env.NEXT_PUBLIC_API_URL}${picture.route}`}
                                     />
                                 </div>
@@ -262,7 +264,7 @@ const fetchHoraires = async () => {
                                 <div key={`duplicate-${animal.id}`} className="scroll-item relative group">
                                 <img 
                                     alt="default-picture" 
-                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                    className="w-full h-full object-cover object-bottom rounded-2xl" 
                                     src='/image.jpg'
                                 />
                                 </div>
@@ -271,11 +273,11 @@ const fetchHoraires = async () => {
                         </div>
                     </div>
                     <div className="w-full flex justify-center items-center mt-8">
-                        <Button2
-                            type="submit"
-                            texte="Nos habitats"
-                            link="/habitats"
-                        />
+                        <Link href="/nos-habitats">
+                            <Button2
+                                texte="Nos habitats"
+                            />
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -358,11 +360,11 @@ const fetchHoraires = async () => {
                         </div>
                     </div>
                     <div className="w-full flex justify-center items-center mt-8">
-                        <Button2
-                            type="submit"
-                            texte="Nos habitats"
-                            link="/habitats"
-                        />
+                        <Link href="/nos-habitats">
+                            <Button2
+                                texte="Nos habitats"
+                            />
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -383,25 +385,25 @@ const fetchHoraires = async () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full max-h-[26rem] overflow-hidden mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-4">
-                    {services.map((service) => (
-                        <div key={service.id} className="relative w-full h-full group">
-                        <img 
-                            alt="main-picture" 
-                            className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
-                            src={service.pictures && service.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${service.pictures[0].route}` : '/image.jpg'}
-                        />
-                        <p className="absolute inset-0 flex items-center justify-center text-custom-4 bg-black bg-opacity-50 px-2 py-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">{service.name}</p>
-                        </div>
-                    ))}
+                    <div className="w-full max-h-[26rem] overflow-hidden mt-4 grid gap-4 mb-4" style={{ gridTemplateColumns: `repeat(${services.length}, minmax(200px, 1fr))` }}>
+                        {services.map((service) => (
+                            <div key={service.id} className="relative w-full h-full group">
+                                <img 
+                                    alt="main-picture" 
+                                    className="w-full h-full object-cover object-bottom rounded-2xl group-hover:brightness-50" 
+                                    src={service.pictures && service.pictures.length > 0 ? `${process.env.NEXT_PUBLIC_API_URL}${service.pictures[0].route}` : '/image.jpg'}
+                                />
+                                <p className="absolute inset-0 flex items-center justify-center text-custom-4 bg-black bg-opacity-50 px-2 py-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity">{service.name}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="w-full flex justify-center items-center mt-8">
-                    <Button2
-                        type="submit"
-                        texte="Nos services"
-                        link="/habitats"
-                    />
+                    <Link href="/nos-services">
+                        <Button2
+                            texte="Nos services"
+                        />
+                    </Link>
                 </div>
             </div>
 
@@ -438,11 +440,11 @@ const fetchHoraires = async () => {
                     </Swiper>
                 </div>
                 <div className="w-full flex justify-center items-center mt-8">
-                    <Button2
-                        type="submit"
-                        texte="Nos services"
-                        link="/habitats"
-                    />
+                    <Link href="/nos-services">
+                        <Button2
+                            texte="Nos services"
+                        />
+                    </Link>
                 </div>
             </div>
 
@@ -464,39 +466,41 @@ const fetchHoraires = async () => {
                             ))}
                         </div>
                     </div>
-                    <form onSubmit={handleSubmit} className="flex flex-col items-center gap-8 h-full w-full mt-8">
-                        <div className="flex flex-col justify-center items-start gap-2 w-2/3">
-                            <label  className="text-white" htmlFor="">Pseudo</label>
-                            <input
-                                type="text"
-                                name="pseudo"
-                                placeholder=" "
-                                value={formData.pseudo}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-white px-3 py-2 rounded-full shadow-sm focus:outline-none"
-                            />
-                            <label  className="text-white" htmlFor="">Votre avis</label>
-                            <textarea
-                                type="text"
-                                name="pseudo"
-                                placeholder=" "
-                                value={formData.message}
-                                onChange={handleChange}
-                                required
-                                className="w-full bg-white px-3 py-2 mt-1 rounded-lg shadow-sm focus:outline-none"
-                            />
-                            <div className="text-right text-white">
-                                {charCount}/100
+                    <div className="flex flex-col items-center gap-8 h-full w-full mt-8">
+                        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-8 h-full w-full mt-8">
+                            <div className="flex flex-col justify-center items-start gap-2 w-2/3">
+                                <label className="text-white" htmlFor="pseudo">Pseudo</label>
+                                <input
+                                    type="text"
+                                    name="pseudo"
+                                    placeholder=" "
+                                    value={formData.pseudo}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full bg-white px-3 py-2 rounded-full shadow-sm focus:outline-none"
+                                />
+                                <label className="text-white" htmlFor="message">Votre avis</label>
+                                <textarea
+                                    name="message"
+                                    placeholder=" "
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    className="w-full bg-white px-3 py-2 mt-1 rounded-lg shadow-sm focus:outline-none"
+                                />
+                                <div className="text-right text-white">
+                                    {charCount}/100
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex justify-center">
-                            <Button1
-                                type="submit"
-                                texte="Enregistrer"
-                            />
-                        </div>
-                    </form>
+                            <div className="flex justify-center">
+                                <Button1
+                                    type="submit"
+                                    texte="Envoyer"
+                                />
+                            </div>
+                        </form>
+                        {message && <p className="text-black font-extrabold text-lg">{message}</p>}
+                    </div>
                 </div>
             </div>
 
@@ -520,7 +524,7 @@ const fetchHoraires = async () => {
                     </div>
                     <form onSubmit={handleSubmit} className="flex flex-col items-center gap-8 h-full w-full mt-8">
                         <div className="flex flex-col justify-center items-start gap-2 w-2/3">
-                            <label className="text-white" htmlFor="">Pseudo</label>
+                            <label className="text-white" htmlFor="pseudo">Pseudo</label>
                             <input
                                 type="text"
                                 name="pseudo"
@@ -530,27 +534,27 @@ const fetchHoraires = async () => {
                                 required
                                 className="w-full bg-white px-3 py-2 rounded-full shadow-sm focus:outline-none"
                             />
-                            <label  className="text-white" htmlFor="">Votre avis</label>
+                            <label className="text-white" htmlFor="message">Votre avis</label>
                             <textarea
-                                type="text"
-                                name="pseudo"
+                                name="message"
                                 placeholder=" "
                                 value={formData.message}
                                 onChange={handleChange}
                                 required
                                 className="w-full bg-white px-3 py-2 mt-1 rounded-lg shadow-sm focus:outline-none"
                             />
-                            <div className="text-right text-gray-500">
+                            <div className="text-right text-white">
                                 {charCount}/100
                             </div>
                         </div>
                         <div className="flex justify-center">
                             <Button1
                                 type="submit"
-                                texte="Enregistrer"
+                                texte="Envoyer"
                             />
                         </div>
                     </form>
+                    {message && <p className="text-black font-extrabold text-lg">{message}</p>}
                 </div>
             </div>
 
