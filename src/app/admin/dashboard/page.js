@@ -115,7 +115,7 @@ export default function DashboardPage() {
             <h2 className="text-2xl font-semibold mb-4">Dashboard</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div>
-                    <h2 className="text-2xl font-semibold mb-4">Répartition des vues par animal</h2>
+                    <h2 className="text-xl font-semibold mb-4">Répartition des vues par animal</h2>
                     <div className="mb-8 w-full">
                         {animals.length > 0 ? (
                             <PieChart data={animals} />
@@ -126,7 +126,7 @@ export default function DashboardPage() {
                 </div>
                 <div>
                     <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-2xl font-semibold">Liste des Horaires</h2>
+                        <h2 className="text-xl font-semibold">Liste des Horaires</h2>
                         <Button1
                             texte={'Ajouter un horaire'}
                             onClick={() => openModal()}
