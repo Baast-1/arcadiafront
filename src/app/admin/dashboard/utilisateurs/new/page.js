@@ -11,7 +11,6 @@ const NewUtilisateur = () => {
         email: '',
         firstname: '',
         role: '',
-        picture: ''
     });
     const router = useRouter();
 
@@ -91,7 +90,6 @@ const NewUtilisateur = () => {
                                 className="w-full px-3 py-2 mt-1 border-2 border-custom-2 rounded-full shadow-sm focus:outline-none"
                             >
                                 <option value="" disabled>Role</option>
-                                <option value="admin">Admin</option>
                                 <option value="veterinaire">Veterinaire</option>
                                 <option value="employe">Employe</option>
                             </select>
