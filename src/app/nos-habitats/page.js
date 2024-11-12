@@ -129,7 +129,7 @@ export default function NosHabitats() {
                                             <div className="text-base font-normal text-custom-4">{selectedHabitat.description}</div>
                                         </div>
                                     </div>
-                                    <div className="grid grid-cols-4 gap-4">
+                                    <div className="grid grid-cols-3 gap-4">
                                         {filteredAnimals.map((animal, index) => (
                                             <div 
                                                 key={index} 
