@@ -23,6 +23,7 @@ const ShowHabitats = ({ params }) => {
     const [showModal, setShowModal] = useState(false);
     const router = useRouter();
     const { userRole } = useContext(UserContext);
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         fetchHabitats();
@@ -114,9 +115,16 @@ const ShowHabitats = ({ params }) => {
             console.log('API response:', response.data);
             router.push('/admin/dashboard/habitats');
         } catch (error) {
-            console.error('Erreur lors de la mise à jour de habitat:', error);
+            console.error('Erreur lors de la suppression de l\'habitat:', error);
+            
+            if (error.response && error.response.data && error.response.data.error) {
+                setErrorMessage(error.response.data.error);
+            } else {
+                setErrorMessage('Une erreur est survenue lors de la suppression de l\'habitat.');
+            }
         }
     }
+    
 
     const handleDeleteComment = async () => {
         try {
@@ -155,6 +163,7 @@ const ShowHabitats = ({ params }) => {
 
     return (
         <div className="p-6 h-5/6">
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <h1 className="text-2xl font-bold text-custom-1">{formData.name}</h1>
             <div className="grid grid-cols-2 gap-8 w-full h-full">
                 <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 h-full">
