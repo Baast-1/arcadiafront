@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Button2, Button5, Button1 } from "@/components/Buttons";
@@ -17,13 +16,14 @@ const ShowHabitats = ({ params }) => {
         description: '',
         picture: '',
     });
-    const [FormComments, setFormComments] = useState({note : "", state : "", upgrade : ""});
+    const [FormComments, setFormComments] = useState({note : "", state : "", upgrade : false});
     const [comments, setComments] = useState([]);
     const [selectedComment, setSelectedComment] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [showErrorPopup, setShowErrorPopup] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
     const { userRole } = useContext(UserContext);
-    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         fetchHabitats();
@@ -113,14 +113,21 @@ const ShowHabitats = ({ params }) => {
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
             });
             console.log('API response:', response.data);
-            router.push('/admin/dashboard/habitats');
+            if (response.data.error) {
+                setErrorMessage(response.data.error);
+                setShowErrorPopup(true);
+            } else {
+                router.push('/admin/dashboard/habitats');
+            }
         } catch (error) {
             console.error('Erreur lors de la suppression de l\'habitat:', error);
             
             if (error.response && error.response.data && error.response.data.error) {
                 setErrorMessage(error.response.data.error);
+                setShowErrorPopup(true);
             } else {
                 setErrorMessage('Une erreur est survenue lors de la suppression de l\'habitat.');
+                setShowErrorPopup(true);
             }
         }
     }
@@ -163,7 +170,6 @@ const ShowHabitats = ({ params }) => {
 
     return (
         <div className="p-6 h-5/6">
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <h1 className="text-2xl font-bold text-custom-1">{formData.name}</h1>
             <div className="grid grid-cols-2 gap-8 w-full h-full">
                 <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6 h-full">
@@ -174,13 +180,13 @@ const ShowHabitats = ({ params }) => {
                                     <>
                                         <img
                                             src={picturePreviewUrl}
-                                            alt="Aperçu de l&apos;image"
+                                            alt="Aperçu de l'image"
                                             className="w-full h-full rounded-xl object-cover"
                                         />
                                         <div
                                             className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                         >
-                                            <p className="text-custom-2 text-white text-center text-sm font-semibold">Modifier l&apos;image 1920 x 1080</p>
+                                            <p className="text-custom-2 text-white text-center text-sm font-semibold">Modifier l'image 1920 x 1080</p>
                                         </div>
                                     </>
                                 ) : (
@@ -188,17 +194,17 @@ const ShowHabitats = ({ params }) => {
                                         <>
                                             <img
                                                 src={`${process.env.NEXT_PUBLIC_API_URL}${formData.picture}`}
-                                                alt="Aperçu de l&apos;image"
+                                                alt="Aperçu de l'image"
                                                 className="w-full h-full rounded-xl object-cover"
                                             />
                                             <div
                                                 className="absolute inset-0 bg-black bg-opacity-50 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                             >
-                                                <p className="text-custom-2 text-white text-center text-sm font-semibold">Modifier l&apos;image 1920 x 1080</p>
+                                                <p className="text-custom-2 text-white text-center text-sm font-semibold">Modifier l'image 1920 x 1080</p>
                                             </div>
                                         </>
                                     ) : (
-                                        <span className="text-custom-1">Cliquez pour t&eacute;l&eacute;charger 1920 x 1080</span>
+                                        <span className="text-custom-1">Cliquez pour télécharger 1920 x 1080</span>
                                     )
                                 )}
                                 <input
@@ -241,16 +247,16 @@ const ShowHabitats = ({ params }) => {
                         </div>
                         {userRole === 'admin' && (
                             <div className="flex justify-center items-end gap-4">
-                            <Button1
-                                type="submit"
-                                texte="Enregistrer"
-                            />    
-                            <Button5
-                                type="button"
-                                texte="Supprimer"
-                                onClick={handleDelete}
-                            />    
-                        </div>
+                                <Button1
+                                    type="submit"
+                                    texte="Enregistrer"
+                                />    
+                                <Button5
+                                    type="button"
+                                    texte="Supprimer"
+                                    onClick={handleDelete}
+                                />    
+                            </div>
                         )}
                     </div>
                 </form>
@@ -263,8 +269,8 @@ const ShowHabitats = ({ params }) => {
                                 onClick={() => {
                                     setSelectedComment(null);
                                     setShowModal(true);
-                            }}
-                        />
+                                }}
+                            />
                         )}
                     </div>
                     <div className="overflow-y-auto p-8 border-2 border-custom-1 rounded-xl h-5/6">
@@ -278,7 +284,7 @@ const ShowHabitats = ({ params }) => {
                                 </div>
                                 <div className="flex flex-row gap-2">
                                     <p className="text-sm font-semibold">A ameliorer :</p>
-                                    <p className="text-sm">{comment.upgrade === 1 ? 'Oui' : 'Non'}</p>
+                                    <p className="text-sm">{comment.upgrade ? 'Oui' : 'Non'}</p>
                                 </div>
                                 <p className="text-sm">
                                     {comment.note.length > 50 ? comment.note.substring(0, 50) + '...' : comment.note}
@@ -319,14 +325,14 @@ const ShowHabitats = ({ params }) => {
                                             >
                                                 <option value="" disabled hidden>Choisir...</option>
                                                 <option value="1">Correct</option>
-                                                <option value="2">&Agrave; am&eacute;liorer</option>
-                                                <option value="3">D&eacute;labr&eacute;</option>
+                                                <option value="2">À améliorer</option>
+                                                <option value="3">Délabré</option>
                                             </select>
-                                            <span className="input-placeholder">Choisir un &Eacute;tat</span>
+                                            <span className="input-placeholder">Choisir un État</span>
                                         </div>
                                     </div>
                                     <div className="flex flex-col w-full">
-                                        <span className=" text-center text-sm text-custom-1 font-normal">Besoin d&apos;une am&eacute;lioration</span>
+                                        <span className=" text-center text-sm text-custom-1 font-normal">Besoin d'une amélioration</span>
                                         <div className="w-full flex flex-row justify-center items-center mt-2">
                                             <div className="mr-2">Non</div>
                                             <div className="toggle-container">
@@ -334,12 +340,12 @@ const ShowHabitats = ({ params }) => {
                                                     type="checkbox"
                                                     id="toggle"
                                                     className="toggle-input"
-                                                    checked={selectedComment ? selectedComment.upgrade === 1 : FormComments.upgrade === 1}
+                                                    checked={selectedComment ? selectedComment.upgrade : FormComments.upgrade}
                                                     onChange={(e) => {
                                                         if (selectedComment) {
-                                                            setSelectedComment({ ...selectedComment, upgrade: e.target.checked ? 1 : 0 });
+                                                            setSelectedComment({ ...selectedComment, upgrade: e.target.checked });
                                                         } else {
-                                                            setFormComments({ ...FormComments, upgrade: e.target.checked ? 1 : 0 });
+                                                            setFormComments({ ...FormComments, upgrade: e.target.checked });
                                                         }
                                                     }}
                                                     disabled={!!selectedComment}
@@ -384,6 +390,20 @@ const ShowHabitats = ({ params }) => {
                                 />
                             )}
                         </form>
+                    </div>
+                </div>
+            )}
+            {showErrorPopup && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                        <h2 className="text-xl font-semibold mb-4">Erreur</h2>
+                        <p>{errorMessage}</p>
+                        <button
+                            onClick={() => setShowErrorPopup(false)}
+                            className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
+                        >
+                            Fermer
+                        </button>
                     </div>
                 </div>
             )}
