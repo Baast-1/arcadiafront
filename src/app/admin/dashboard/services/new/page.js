@@ -3,7 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Button2 } from "@/components/Buttons";
+import { Button1, Button2 } from "@/components/Buttons";
 
 const NewServices = () => {
     const [formData, setFormData] = useState({
@@ -111,7 +111,7 @@ const NewServices = () => {
                     </div>
                 </div>
                 <div className="flex justify-center mt-4">
-                    <Button2
+                    <Button1
                         type="submit"
                         texte="Enregistrer"
                     />
