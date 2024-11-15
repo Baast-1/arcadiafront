@@ -114,7 +114,7 @@ export default function Home() {
 
 const fetchAvis = async () => {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}avis`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}avis/visible`, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         });
         const data = await response.json();
